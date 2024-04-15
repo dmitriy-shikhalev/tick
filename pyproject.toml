@@ -9,17 +9,25 @@ packages = [{ include = "tick" }]
 [tool.poetry.dependencies]
 python = "^3.12"
 fastapi = "^0.110.1"
-pytest-pylint = "^0.21.0"
-pytest-mypy = "^0.10.3"
+uvicorn = "^0.29.0"
+alembic = "^1.13.1"
 
 [tool.poetry.group.dev.dependencies]
 poetry = "^1.8.2"
 pytest = "^8.1.1"
 mypy = "^1.9.0"
 pylint = "^3.1.0"
+pytest-pylint = "^0.21.0"
+pytest-mypy = "^0.10.3"
 coverage = "^7.4.4"
 pytest-coverage = "^0.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.mypy]
+plugins = [
+    "pydantic.mypy"
+]
