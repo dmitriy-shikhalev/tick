@@ -22,7 +22,7 @@ class Input(Base):
     key: Mapped[str] = mapped_column()
     value: Mapped[str] = mapped_column()
     request_id: Mapped[int] = mapped_column(ForeignKey("request.id"), nullable=True)
-    request: Mapped["Request"] = relationship(back_populates="request")
+    request: Mapped["Request"] = relationship(back_populates="inputs")
 
 
 class Output(Base):
@@ -32,13 +32,13 @@ class Output(Base):
     key: Mapped[str] = mapped_column()
     value: Mapped[str] = mapped_column()
     request_id: Mapped[int] = mapped_column(ForeignKey("request.id"), nullable=True)
-    request: Mapped["Request"] = relationship(back_populates="request")
+    request: Mapped["Request"] = relationship(back_populates="outputs")
 
 
 class Request(Base):
     __tablename__ = "request"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    input: Mapped[list[Input]] = relationship(back_populates="request")
-    output: Mapped[list[Output]] = relationship(back_populates="request")
+    inputs: Mapped[list[Input]] = relationship(back_populates="request")
+    outputs: Mapped[list[Output]] = relationship(back_populates="request")
     status: Mapped[Status] = mapped_column(default=Status.PENDING)
